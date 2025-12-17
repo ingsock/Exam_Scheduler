@@ -62,11 +62,21 @@ def create_form():
         manager = FormsManager()
         url = manager.create_exam_form(title, subjects)
         # Extract ID from URL if possible, or user has to input it.
-        # URL format: .../d/{form_id}/viewform
-        # simple parsing:
-        parts = url.split("/d/")
-        if len(parts) > 1:
-            form_id = parts[1].split("/")[0]
+        # URL format: .../d/{form_id}/viewform (Google) OR .../r/{form_id} (Tally)
+
+        form_id = ""
+        if "/d/" in url:
+            parts = url.split("/d/")
+            if len(parts) > 1:
+                form_id = parts[1].split("/")[0]
+        elif "/r/" in url:
+            parts = url.split("/r/")
+            if len(parts) > 1:
+                form_id = parts[1].split("/")[0]
+                # Filter out query params if any
+                form_id = form_id.split("?")[0]
+
+        if form_id:
             STATE["form_id"] = form_id
 
         return jsonify(
