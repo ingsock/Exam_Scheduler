@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Scheduler Admin</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Exam Scheduler Admin</h1>
+            <div id="status-bar">Ready</div>
+        </header>
+
+        <main>
+            <div class="card glass">
+                <h2>1. Configuration</h2>
+                <div class="form-group">
+                    <label>Number of Days:</label>
+                    <input type="number" id="numDays" value="20" min="5" max="100">
+                </div>
+
+                <div class="form-group">
+                    <label>Start Date:</label>
+                    <input type="date" id="startDate" value="2025-01-01">
+                </div>
+
+                <div class="form-group">
+                    <label>Subjects (comma separated):</label>
+                    <input type="text" id="subjects" value="Math, Physics, Chemistry, Biology, History">
+                </div>
+
+                <div class="form-group">
+                    <label>Allowed Emails (whitelist):</label>
+                    <textarea id="allowedEmails" rows="4" placeholder="one@example.com&#10;two@example.com"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Manage Holidays (Click days to toggle):</label>
+                    <div id="calendar-grid" class="calendar-grid">
+                        <!-- JS generated -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="card glass">
+                <h2>2. Google Forms</h2>
+                <div class="actions">
+                    <input type="text" id="formTitle" placeholder="Form Title" value="Exam Schedule Request">
+                    <button onclick="createForm()">Create New Form</button>
+                    <span>OR</span>
+                    <input type="text" id="formId" placeholder="Existing Form ID">
+                </div>
+                <div id="form-link-container" class="hidden">
+                    <p>Form URL: <a id="formURL" href="#" target="_blank">link</a></p>
+                </div>
+            </div>
+
+            <div class="card glass">
+                <h2>3. Schedule</h2>
+                <button class="primary-btn" onclick="runSchedule()">Run Scheduler</button>
+                <div id="result-area" class="hidden">
+                    <h3>Generated Schedule</h3>
+                    <p>Algorithm: <span id="algoName">-</span> | Penalty: <span id="penaltyVal">-</span></p>
+                    <a href="/export/word" class="secondary-btn">Download Word Doc</a>
+                    <div id="result-calendar" class="calendar-grid result-view">
+                        <!-- JS generated results -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
