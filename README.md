@@ -5,7 +5,7 @@ A powerful, intelligent exam scheduling system that minimizes student stress usi
 ## 📌 Overview
 
 This project automatically schedules exams into available time slots while minimizing a specific penalty function defined by student stress factors:
-$$ \text{Penalty} = 2^t \cdot d^2 \cdot e^{-a \cdot g} $$
+Penalty = 2^t * d^2 * e^{-a * g}
 Where:
 *   $t$: Number of previous attempts (trials).
 *   $d$: Subject difficulty (1-10).
